@@ -16,7 +16,7 @@ function validarAcceso() {
     } else {
         intentos++
         if (intentos >= 3) {
-            document.getElementById("mensaje-error").textContent = "Acceso Bloqueado"
+            document.getElementById("mensaje-error").textContent = "Acceso Bloqueado Porfa reiniciea la pagina para volver a intentarlo"
             document.getElementById("usuario").disabled = true;
             document.getElementById("clave").disabled = true;
         } else {
