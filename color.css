@@ -1,6 +1,21 @@
-#titulo{color:rgb(255, 0, 0); text-align:center}
-#sustitulo{color:blue}
-#sustitulos2{color:rgb(0, 255, 221)}
+body{
+    background-color:rgb(35, 30, 30)
+}
+#titulo { 
+    color: rgb(255, 0, 0); 
+    text-align: center; 
+    animation: girar 2s linear infinite; 
+}
+@keyframes girar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(25deg); }
+}
+#sustitulo{
+    color:blue
+}
+#sustitulos2{
+    color:rgb(0, 255, 221)
+}
 #imagen{
     display: block; margin-left: auto; margin-right: auto;
 }
@@ -13,3 +28,4 @@ label {
     color: #ff0000;
     font-weight: bold;
 }
+#link{color:blue}

@@ -1,4 +1,28 @@
-document.getElementById("titulo").textContent = "Gerat De Rivia";
-document.getElementById("sustitulo").textContent = "Geralt de Rivia es un personaje de la saga de videojuegos protagonista de los 3 primeros juegos es un experto en el combate cuerpo a cuerpo con espadas";
-document.getElementById("imagen").src = "Geralt.jpg";
-document.getElementById("sustitulos2").textContent = "Es fomoso en su mundo por ser un grand cazador de mostruos para a la vez por 'supuestamente matar al un ret' el cual fue un crimer que no cometio";
+let intentos = 0
+function validarAcceso() {
+    let usuarioEscrito = document.getElementById("usuario").value;
+    let claveEscrita = document.getElementById("clave").value;
+    if (usuarioEscrito === "Geralt" && claveEscrita === "De Rivia") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("contenido_de_la_pagina").style.display = "block";
+        document.getElementById("titulo").textContent = "Gerat De Rivia";
+        document.getElementById("sustitulo").textContent = "Geralt de Rivia es un personaje de la saga de videojuegos The wicher";
+        document.getElementById("imagen").src = "Geralt.jpg";
+        document.getElementById("sustitulos2").textContent = "Es fomoso en su mundo por ser un gran cazador de mostruos y es conocido por 'Supuestamente matar al rey Fortest'";
+        let visitas = Number(localStorage.getItem("visitasContador")) || 0;
+        visitas++;
+        localStorage.setItem("visitasContador", visitas);
+        document.getElementById("contador-visitas").textContent = "Has entrado a esta página " + visitas + " vez/veces.";
+    } else {
+        intentos++
+        if (intentos >= 3) {
+            document.getElementById("mensaje-error").textContent = "Acceso Bloqueado"
+            document.getElementById("usuario").disabled = true;
+            document.getElementById("clave").disabled = true;
+        } else {
+            let restantes = 3 - intentos;
+            document.getElementById("mensaje-error").textContent = "Te quedan " + restantes + " intento(s)";
+        }
+        
+    }
+}
