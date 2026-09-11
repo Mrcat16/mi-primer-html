@@ -1,5 +1,4 @@
 let intentos = 0;
-
 function validarAcceso() {
     let usuarioEscrito = document.getElementById("usuario").value;
     let claveEscrita = document.getElementById("clave").value;
@@ -34,10 +33,11 @@ function enviarACalc() {
         nombre: document.getElementById("nombre").value,
         apellido: document.getElementById("apellido").value,
         edad: document.getElementById("edad").value,
-        gusto: document.getElementById("gusto").value
+        gusto: document.getElementById("gusto").value,
+        opinion: document.getElementById("opinion").value
     };
 
-    if (!datos.nombre || !datos.apellido || !datos.edad || !datos.gusto) {
+    if (!datos.nombre || !datos.apellido || !datos.edad || !datos.gusto || !datos.opinion) {
         alert("Por favor completa todos los campos.");
         return;
     }

@@ -2,15 +2,25 @@ const express = require('express');
 const cors = require('cors');
 const XLSX = require('xlsx');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Sirve todos los archivos de tu carpeta (HTML, CSS, JS, imágenes)
+app.use(express.static(__dirname));
+
 const ARCHIVO = 'encuesta_witcher.ods';
 
+// Ruta principal para cargar la página
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pagina_web.html'));
+});
+
+// Ruta para recibir los datos del formulario
 app.post('/guardar', (req, res) => {
-    const { nombre, apellido, edad, gusto } = req.body;
+    const { nombre, apellido, edad, gusto, opinion } = req.body;
     let datos = [];
 
     if (fs.existsSync(ARCHIVO)) {
@@ -23,7 +33,8 @@ app.post('/guardar', (req, res) => {
         'Nombres': nombre,
         'Apellidos': apellido,
         'Edad': Number(edad),
-        'Gusto Saga (1-10)': Number(gusto)
+        'Gusto Saga (1-100)': Number(gusto),
+        '¿Por qué?': opinion
     });
 
     const nuevaHoja = XLSX.utils.json_to_sheet(datos);
